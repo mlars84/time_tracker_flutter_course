@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time_tracker_flutter_course/app/sign_in/email_sign_in_model.dart';
 import 'package:time_tracker_flutter_course/app/sign_in/validators.dart';
 import 'package:time_tracker_flutter_course/common_widgets/form_submit_button.dart';
-import 'package:time_tracker_flutter_course/common_widgets/platform_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/services/auth.dart';
 import 'package:flutter/services.dart';
@@ -102,6 +99,7 @@ class _EmailSignInFormStatefulState extends State<EmailSignInFormStateful> {
       ),
       SizedBox(height: 8.0),
       FlatButton(
+        key: ValueKey('registerButton'),
         child: Text(secondaryText),
         onPressed: !_isLoading ? _toggleFormType : null,
       ),
@@ -112,6 +110,7 @@ class _EmailSignInFormStatefulState extends State<EmailSignInFormStateful> {
     bool showErrorText =
         _submitted && !widget.passwordValidator.isValid(_password);
     return TextField(
+      key: ValueKey('passwordField'),
       controller: _passwordController,
       focusNode: _passwordFocusNode,
       decoration: InputDecoration(
@@ -129,6 +128,7 @@ class _EmailSignInFormStatefulState extends State<EmailSignInFormStateful> {
   TextField _buildEmailTextField() {
     bool showErrorText = _submitted && !widget.emailValidator.isValid(_email);
     return TextField(
+      key: ValueKey('emailField'),
       controller: _emailController,
       focusNode: _emailFocusNode,
       decoration: InputDecoration(
