@@ -18,9 +18,7 @@ void main() {
   Future<void> pumpLandingPage(WidgetTester tester) async {
     await tester.pumpWidget(Provider<AuthBase>(
       builder: (_) => mockAuth,
-      child: MaterialApp(
-        home: LandingPage()
-      ),
+      child: MaterialApp(home: LandingPage()),
     ));
   }
 
@@ -32,25 +30,25 @@ void main() {
 
   group('CircularProgressIndicator', () {
     testWidgets(
-       "Stream waiting",
-       (WidgetTester tester) async {
-         stubOnAuthStateChangedYields([]);
+      "Stream waiting",
+      (WidgetTester tester) async {
+        stubOnAuthStateChangedYields([]);
 
-         await pumpLandingPage(tester);
+        await pumpLandingPage(tester);
 
-         expect(find.byType(CircularProgressIndicator), findsOneWidget);
-       },
+        expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      },
     );
 
     testWidgets(
-       "Null user",
-       (WidgetTester tester) async {
-         stubOnAuthStateChangedYields([null]);
+      "Null user",
+      (WidgetTester tester) async {
+        stubOnAuthStateChangedYields([null]);
 
-         await pumpLandingPage(tester);
+        await pumpLandingPage(tester);
 
-         expect(find.byType(SignInPage), findsOneWidget);
-       },
+        expect(find.byType(SignInPage), findsOneWidget);
+      },
     );
   });
 }

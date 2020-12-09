@@ -11,7 +11,6 @@ import 'package:time_tracker_flutter_course/common_widgets/platform_exception_al
 import 'package:time_tracker_flutter_course/services/database.dart';
 
 class JobsPage extends StatelessWidget {
-
   Future<void> _delete(BuildContext context, Job job) async {
     try {
       final database = Provider.of<Database>(context);

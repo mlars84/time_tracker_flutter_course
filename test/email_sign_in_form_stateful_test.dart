@@ -20,34 +20,30 @@ void main() {
     await tester.pumpWidget(Provider<AuthBase>(
       builder: (_) => mockAuth,
       child: MaterialApp(
-        home: Scaffold(
-          body: EmailSignInFormStateful(
-            onSignedIn: onSignedIn,
-          )
-        )
-      ),
+          home: Scaffold(
+              body: EmailSignInFormStateful(
+        onSignedIn: onSignedIn,
+      ))),
     ));
   }
 
-  /// Simulate sign in success with user being returned 
+  /// Simulate sign in success with user being returned
   void stubSignInWithEmailAndPasswordSucceeds() {
     when(mockAuth.signInWithEmailAndPassword(any, any))
-      .thenAnswer((_) => Future<User>.value(User(uid: '123')));
+        .thenAnswer((_) => Future<User>.value(User(uid: '123')));
   }
 
   /// Simulate sign in failure with [PlatformException]
   void stubSignInWithEmailAndPasswordThrows() {
     when(mockAuth.signInWithEmailAndPassword(any, any))
-      .thenThrow(PlatformException(code: 'ERROR_WRONG_PASSWORD'));
+        .thenThrow(PlatformException(code: 'ERROR_WRONG_PASSWORD'));
   }
 
   group('sign in', () {
     testWidgets(
         'signInWithEmailAndPassword not called when email '
         'AND password are empty'
-        'AND user is not signed in',
-        (WidgetTester tester) async {
-
+        'AND user is not signed in', (WidgetTester tester) async {
       var signedIn = false;
       await pumpEmailSignInForm(tester, onSignedIn: () => signedIn = true);
 
@@ -59,12 +55,11 @@ void main() {
       expect(signedIn, false);
     });
 
-    testWidgets('signInWithEmailAndPassword not called when email field empty '
-        'AND user is not signed in',
-        (WidgetTester tester) async {
-      
+    testWidgets(
+        'signInWithEmailAndPassword not called when email field empty '
+        'AND user is not signed in', (WidgetTester tester) async {
       var signedIn = false;
-      await pumpEmailSignInForm(tester, onSignedIn: () => signedIn =  true);
+      await pumpEmailSignInForm(tester, onSignedIn: () => signedIn = true);
 
       final signInButton = find.text('Sign in');
 
@@ -76,11 +71,9 @@ void main() {
 
     testWidgets(
         'signInWithEmailAndPassword not called when password field empty '
-        'AND user is not signed in',
-        (WidgetTester tester) async {
-
+        'AND user is not signed in', (WidgetTester tester) async {
       var signedIn = false;
-      await pumpEmailSignInForm(tester, onSignedIn: () => signedIn =  true);
+      await pumpEmailSignInForm(tester, onSignedIn: () => signedIn = true);
 
       final signInButton = find.text('Sign in');
 
@@ -90,9 +83,9 @@ void main() {
       expect(signedIn, false);
     });
 
-    testWidgets('signInWithEmailAndPassword called when neither field empty '
-        'AND user is signed in',
-        (WidgetTester tester) async {
+    testWidgets(
+        'signInWithEmailAndPassword called when neither field empty '
+        'AND user is signed in', (WidgetTester tester) async {
       var signedIn = false;
       await pumpEmailSignInForm(tester, onSignedIn: () => signedIn = true);
 
@@ -118,11 +111,11 @@ void main() {
       expect(signedIn, true);
     });
 
-    testWidgets('WHEN the user enters an invalid email and password '
+    testWidgets(
+        'WHEN the user enters an invalid email and password '
         'AND user taps on the sign-in button '
         'THEN signInWithEmailAndPassword is called '
-        'AND user is not signed in',
-        (WidgetTester tester) async {
+        'AND user is not signed in', (WidgetTester tester) async {
       var signedIn = false;
       await pumpEmailSignInForm(tester, onSignedIn: () => signedIn = true);
 

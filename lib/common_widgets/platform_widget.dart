@@ -1,10 +1,8 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 
 abstract class PlatformWidget extends StatelessWidget {
-
   Widget buildCupertinoWidget(BuildContext context);
   Widget buildMaterialWidget(BuildContext context);
 

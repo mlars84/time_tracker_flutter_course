@@ -20,17 +20,14 @@ void main() {
     });
 
     test('Returns Job with all properties', () {
-      Map<String, dynamic> data = {
-        'name': 'Test',
-        'ratePerHour': 15
-      };
+      Map<String, dynamic> data = {'name': 'Test', 'ratePerHour': 15};
 
       final job = Job.fromMap(data, 'abc');
 
       expect(job.name, data['name']);
       expect(job, Job(name: 'Test', ratePerHour: 15, id: 'abc'));
     });
-    
+
     test('Null name check', () {
       final job = Job.fromMap({'ratePerHour': 15}, 'abc');
 
@@ -41,11 +38,8 @@ void main() {
   group('toMap', () {
     test('valid name, ratePerHour', () {
       final job = Job(id: 'abc', name: 'Test', ratePerHour: 15);
-      
-      expect(job.toMap(), {
-        'name': 'Test',
-        'ratePerHour': 15
-      });
+
+      expect(job.toMap(), {'name': 'Test', 'ratePerHour': 15});
     });
   });
 }
