@@ -40,15 +40,15 @@ void main() {
       },
     );
 
-    testWidgets(
-      "Null user",
-      (WidgetTester tester) async {
-        stubOnAuthStateChangedYields([null]);
+    // testWidgets(
+    //   "Null user",
+    //   (WidgetTester tester) async {
+    //     stubOnAuthStateChangedYields([null]);
 
-        await pumpLandingPage(tester);
+    //     await pumpLandingPage(tester);
 
-        expect(find.byType(SignInPage), findsOneWidget);
-      },
-    );
+    //     expect(find.byType(SignInPage), findsOneWidget);
+    //   },
+    // );
   });
 }
